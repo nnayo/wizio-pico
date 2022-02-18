@@ -72,6 +72,12 @@ def dev_nano(env):
     return nano
 
 def dev_compiler(env, application_name = 'APPLICATION'):
+    # check if PROGNAME is already set
+    try:
+        application_name = env['PROGNAME']
+    except KeyError:
+        pass
+
     env.sdk = env.BoardConfig().get("build.sdk", "SDK") # get/set default SDK
     print()
     print( Fore.BLUE + "%s RASPBERRYPI PI PICO RP2040 ( PICO - %s )" % (env.platform.upper(), env.sdk.upper()) )
